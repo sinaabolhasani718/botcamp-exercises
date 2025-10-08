@@ -1,9 +1,11 @@
+import Tabs from "./Tabs.jsx";
+
 function App() {
   return (
     <div>
-      <h1>Tabs Component With React</h1>
+      <Tabs />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

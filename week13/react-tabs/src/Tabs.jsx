@@ -1,14 +1,43 @@
 import { useState } from "react";
-
+import "./styleTabs.css";
 function Tabs() {
-
-    const [activeTab , setActiveTabe] = useState("TAB1")
-
+  const tabs = [
+    { id: "1", title: "TAB 1", content: "content 1" },
+    { id: "2", title: "TAB 2", content: "content 2" },
+    { id: "3", title: "TAB 3", content: "content 3" },
+    { id: "4", title: "TAB 4", content: "content 4" },
+  ];
+  const [activeTab, setActiveTab] = useState("1");
   return (
-    <div>
-        <button onClick={()=>setActiveTabe("TAB1")}>Tab1</button>
-    </div>
-  )
+    <>
+      <div className="header-box">
+        <h1>Tabs Component With React</h1>
+        {tabs.map((tab) => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            className={activeTab === tab.id ? "active" : "button"}
+          >
+            {tab.title}
+          </button>
+        ))}
+      </div>
+      <div className="tabContent">
+        {tabs.map(
+          (tab) =>
+            activeTab === tab.id && (
+              <div key={tab.id}>
+                <h2>{tab.content}</h2>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                </p>
+              </div>
+            )
+        )}
+      </div>
+    </>
+  );
 }
 
-export default Tabs
+export default Tabs;
