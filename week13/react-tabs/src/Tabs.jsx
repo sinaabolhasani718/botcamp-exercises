@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./styleTabs.css";
 function Tabs() {
   const tabs = [
@@ -7,7 +7,12 @@ function Tabs() {
     { id: "3", title: "TAB 3", content: "content 3" },
     { id: "4", title: "TAB 4", content: "content 4" },
   ];
-  const [activeTab, setActiveTab] = useState("1");
+  const [activeTab, setActiveTab] = useState(() => {
+    return localStorage.getItem("activeTab") || "1";
+  });
+  useEffect(() => {
+    localStorage.setItem("activeTab", activeTab);
+  }, [activeTab]);
   return (
     <>
       <div className="header-box">
@@ -16,7 +21,7 @@ function Tabs() {
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
-            className={activeTab === tab.id ? "active" : "button"}
+            className={activeTab === tab.id ? "tabs-active" : "tabs-button"}
           >
             {tab.title}
           </button>
